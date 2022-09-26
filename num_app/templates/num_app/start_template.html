@@ -1,0 +1,10 @@
+{% extends 'main_template.html' %}
+
+{% block title %} Загадайте число {% endblock %}
+{% block content %}
+<h4>Загадайте любое положительное двузначное число</h4>
+<form action="{% url 'start' %}" method="post">
+    {% csrf_token %}
+    <button>Начать</button>
+</form>
+{% endblock %}

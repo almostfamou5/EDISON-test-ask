@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+     table {
+      border: 20px double black;
+      border-radius: 18% 10%;
+        }
+     td {
+     border-radius: 18% 10%
+      }
+     th {
+     border-radius: 10% 18%
+     }
+    </style>
+</head>
+<body>
+<div align="center">
+<div class="row"></div>
+{% block content %}
+{% endblock %}
+<br>
+<h2 >Ваши числа:</h2>
+    <br>
+    {% for answer in user_history reversed %}
+        <h2>{{ answer }}</h2>
+    {% endfor %}
+    <br>
+<table class="table" align="center" cellspacing="25" border="30">
+    {% for element in psychics %}
+        <thead>
+            <tr>
+                <th>Имя экстрасенса</th>
+                <th>Уровень достоверности экстрасенса</th>
+                <th>Версия экстрасенса</th>
+                <th>История ответов экстрасенса</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ element.name }}</td>
+                <td>{{ element.accuracy_level }}</td>
+                <td>{{ element.psych_guess }}</td>
+                <td>
+                    {% for ver in element.answer_list reversed %}
+                        <div class="row">{{ ver }}</div>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    {% endfor %}
+</table>
+
+</div>
+</body>
+</html>
