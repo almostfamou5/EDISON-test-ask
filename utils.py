@@ -1,6 +1,13 @@
 from pynames.generators.russian import PaganNamesGenerator
 import random
 
+
+class Game:
+    def __init__(self):
+        self.player = Player()
+        self.psychics_factory = PsychicsFactory()
+
+
 class Psychics:
 
     def __init__(self):
@@ -29,7 +36,19 @@ class PsychicsFactory:
     def __init__(self):
         self.psychics = [Psychics() for _ in range(2, 4)]
 
+    def get_psychics_list(self):
+        return [psych for psych in self.psychics]
+
+    def make_guess(self):
+        [psych.guess() for psych in self.psychics]
+
+    def check_guess_all(self, user_answer):
+        [psych.guess_check(user_answer) for psych in self.psychics]
+
 
 class Player:
     def __init__(self):
         self.numbers_list = []
+
+    def save_number(self, number):
+            self.numbers_list.append(number)
